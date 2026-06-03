@@ -1,0 +1,16 @@
+{
+  "appId": "be.taxibeheer.app",
+  "appName": "Taxi Beheer App",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1600,
+      "backgroundColor": "#111827",
+      "androidSplashResourceName": "splash",
+      "showSpinner": false
+    }
+  }
+}

@@ -1,0 +1,38 @@
+name: Unzip project ZIP
+
+on:
+  workflow_dispatch:
+    inputs:
+      zip_name:
+        description: "Naam van de ZIP in de repository-root"
+        required: true
+        default: "taxi-beheer-app.zip"
+      target_folder:
+        description: "Doelmap om in uit te pakken"
+        required: true
+        default: "."
+
+permissions:
+  contents: write
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Controleer ZIP
+        run: |
+          test -f "${{ github.event.inputs.zip_name }}" || (echo "ZIP niet gevonden: ${{ github.event.inputs.zip_name }}" && exit 1)
+
+      - name: Pak project uit
+        run: |
+          mkdir -p "${{ github.event.inputs.target_folder }}"
+          unzip -o "${{ github.event.inputs.zip_name }}" -d "${{ github.event.inputs.target_folder }}"
+
+      - name: Commit uitgepakte bestanden
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Pak Taxi Beheer App ZIP uit"
+          file_pattern: "."

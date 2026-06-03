@@ -1,0 +1,25 @@
+{
+  "name": "taxi-beheer-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Responsieve Nederlandstalige taxi administratie app voor ritten, klanten, agenda, betalingen en rapporten.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "cap:add:android": "cap add android",
+    "cap:sync": "cap sync android",
+    "apk:debug": "npm run build && cap sync android && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/cli": "^8.4.0",
+    "@capacitor/core": "^8.4.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {}
+}
