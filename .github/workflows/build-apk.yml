@@ -27,8 +27,15 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      - name: Configureer npm registry
+        run: npm config set registry https://registry.npmjs.org/
+
+      - name: Herstel package-lock registry urls
+        run: |
+          sed -i 's#https://packages.applied-caas-gateway1.internal.api.openai.org/artifactory/api/npm/npm-public/#https://registry.npmjs.org/#g' package-lock.json
+
       - name: Installeer dependencies
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
       - name: Bouw web app
         run: npm run build
